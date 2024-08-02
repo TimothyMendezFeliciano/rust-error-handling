@@ -1,5 +1,12 @@
-fn main() {
-    let v = vec![1,2,3];
+use std::fs::File;
 
-    v[99]; // Throws a Panic because we're accessing memory outside the array's designated length
+fn main() {
+    let getting_file_result = File::open("hello.txt");
+
+    let greeting_file = match getting_file_result {
+        Ok(file) => file,
+        Err(error) => {
+            panic!("Problem opening the file: {:?}", error)
+        }
+    };
 }
